@@ -1,6 +1,6 @@
 -- Allium version
 -- x.x.x-pr = unstable, potential breaking changes
-local allium_version = "0.9.0-pr"
+local allium_version = "0.9.0-pr.newcolor"
 
 local github, json, path = require("lib.nap")("https://api.github.com"), require("lib.json"), "/"
 local firstrun = false
@@ -18,7 +18,7 @@ end
     Configurations can be changed in /cfg/allium.lson
 ]]
 local default = {
-    label = "<&r&dAll&5&h[[Kilroy wuz here.]]&i[[https://www.youtube.com/watch?v=XqZsoesa55w\\&t=15s]]i&r&dum&r> ", -- The label the loader uses
+    label = "<&r&dAll&5&h(Kilroy wuz here.)&i(https://www.youtube.com/watch?v=XqZsoesa55w\\&t=15s)i&r&dum&r> ", -- The label the loader uses
     import_timeout = 5, -- The maximum amount of time it takes to wait for a plugin dependency to provide its module.
     restart_timeout = 5, -- The amount of time to wait when allium errors before restarting
     updates = { -- Various update configurations.
@@ -72,7 +72,7 @@ config.updates.check = {}
 config.updates.run = {}
 
 if config.updates.notify.dependencies then
-    local depget = http.get("https://raw.githubusercontent.com/hugeblank/allium-depman/master/instance.lua")
+    local depget = fs.open("/lib/depman/instance.lua", "r") -- http.get("https://raw.githubusercontent.com/hugeblank/allium-depman/master/instance.lua")
     if depget then
         local contents = depget.readAll()
         depget.close()
